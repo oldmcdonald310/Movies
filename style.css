@@ -380,7 +380,7 @@ h2 {
     /* Tablet adjustments for movie cards */
     .movie-card {
         min-height: 100px; /* Reduced min-height, as content dictates height more now */
-        font-size: 1em;
+        font-size: 1.3em;
         padding: 2px; /* Reduced padding */
         padding-left: 20px;
     }
@@ -464,7 +464,7 @@ h2 {
     /* Mobile adjustments for movie cards */
     .movie-card {
         min-height: 80px; /* Even smaller min-height */
-        font-size: 0.9em;
+        font-size: 1.3em;
         padding: 2px; /* Less padding */
         padding-left: 20px;
     }
