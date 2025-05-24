@@ -78,380 +78,600 @@ body {
     bottom: 0;
     background: linear-gradient(45deg, var(--blockbuster-yellow) 25%, transparent 25%, transparent 75%, var(--blockbuster-yellow) 75%),
                 linear-gradient(-45deg, var(--blockbuster-yellow) 25%, transparent 25%, transparent 75%, var(--blockbuster-yellow) 75%);
-    background-size: 20px 20px;
-    opacity: 0.1;
-    animation: light-flicker 1s infinite alternate;
-}
+            background-size: 20px 20px;
+            opacity: 0.1;
+            animation: light-flicker 1s infinite alternate;
+        }
 
-@keyframes light-flicker {
-    from { opacity: 0.05; }
-    to { opacity: 0.15; }
-}
-
-
-.logo-text {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 5em;
-    color: var(--blockbuster-yellow);
-    text-shadow: 5px 5px var(--blockbuster-red);
-    display: block;
-    line-height: 1;
-}
-
-.slogan-text {
-    font-family: 'Bebas Neue', cursive;
-    font-size: 2em;
-    color: white;
-    letter-spacing: 2px;
-    margin-top: 10px;
-    text-shadow: 2px 2px var(--blockbuster-red);
-}
-
-.search-container {
-    margin-bottom: 30px;
-}
-
-.search-input {
-    width: 80%;
-    max-width: 500px;
-    padding: 15px 20px;
-    font-size: 1.5em;
-    border: 4px solid var(--blockbuster-red);
-    border-radius: 8px;
-    background-color: var(--light-grey);
-    color: var(--dark-blue);
-    font-family: 'Bebas Neue', cursive;
-    letter-spacing: 1px;
-    outline: none;
-    transition: all 0.3s ease;
-    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
-}
-
-.search-input::placeholder {
-    color: #666;
-    opacity: 0.8;
-}
-
-.search-input:focus {
-    border-color: var(--blockbuster-yellow);
-    box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
-    background-color: white;
-}
+        @keyframes light-flicker {
+            from { opacity: 0.05; }
+            to { opacity: 0.15; }
+        }
 
 
-h2 {
-    font-size: 2.8em;
-    color: var(--blockbuster-yellow);
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    margin-top: 40px;
-    margin-bottom: 30px;
-    text-shadow: 3px 3px var(--dark-blue);
-    border-bottom: 3px dashed var(--blockbuster-red);
-    padding-bottom: 10px;
-}
+        .logo-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 5em;
+            color: var(--blockbuster-yellow);
+            text-shadow: 5px 5px var(--blockbuster-red);
+            display: block;
+            line-height: 1;
+        }
 
-.movie-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 25px;
-    padding: 20px;
-    background-color: var(--dark-blue);
-    border-radius: 8px;
-    border: 3px solid var(--blockbuster-red);
-}
+        .slogan-text {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 2em;
+            color: white;
+            letter-spacing: 2px;
+            margin-top: 10px;
+            text-shadow: 2px 2px var(--blockbuster-red);
+        }
 
-.movie-card {
-    background-color: var(--blockbuster-yellow);
-    color: var(--blockbuster-blue);
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
-    transition: transform 0.2s ease-in-out;
-    cursor: pointer;
-    border: 3px solid var(--blockbuster-red);
-    display: flex;
-    flex-direction: column; /* Changed to column to stack title and image */
-    align-items: center;
-    justify-content: space-between; /* Space out content vertically */
-    min-height: 180px; /* Increased min-height to accommodate image */
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-size: 1.5em; /* Default font size for card text */
-    text-shadow: 1px 1px var(--blockbuster-red);
-}
+        .search-container {
+            margin-bottom: 30px;
+        }
 
-.movie-card:hover {
-    transform: translateY(-8px) scale(1.03);
-    box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.6);
-}
+        .search-input {
+            width: 80%;
+            max-width: 500px;
+            padding: 15px 20px;
+            font-size: 1.5em;
+            border: 4px solid var(--blockbuster-red);
+            border-radius: 8px;
+            background-color: var(--light-grey);
+            color: var(--dark-blue);
+            font-family: 'Bebas Neue', cursive;
+            letter-spacing: 1px;
+            outline: none;
+            transition: all 0.3s ease;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+        }
 
-.movie-card p {
-    font-family: 'Bebas Neue', cursive;
-    font-weight: bold;
-    margin: 10px 0 0 0; /* Margin for the title above image */
-}
+        .search-input::placeholder {
+            color: #666;
+            opacity: 0.8;
+        }
 
-/* NEW: Thumbnail Image on Movie Card */
-.movie-card img {
-    max-width: 100px; /* Set a max width for thumbnails */
-    height: auto; /* Maintain aspect ratio */
-    border: 2px solid var(--blockbuster-red);
-    border-radius: 5px;
-    margin-top: 10px; /* Space between title and image */
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-}
-/* END NEW */
-
-.no-movies-found {
-    font-size: 2em;
-    color: var(--light-grey);
-    margin-top: 30px;
-    grid-column: 1 / -1; /* Make it span all columns in the grid */
-    font-style: italic;
-}
-
-.footer {
-    background-color: var(--blockbuster-red);
-    color: white;
-    padding: 20px 0;
-    margin-top: 50px;
-    font-size: 1.1em;
-    letter-spacing: 1px;
-    box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.5);
-    border-top: 5px solid var(--blockbuster-yellow);
-}
-
-/* Modal Styles */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1000; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgba(0, 0, 0, 0.8); /* Black w/ opacity */
-    backdrop-filter: blur(5px); /* Slightly blur background */
-    -webkit-backdrop-filter: blur(5px); /* Safari support */
-    padding-top: 60px;
-}
-
-.modal-content {
-    background-color: var(--blockbuster-blue);
-    margin: 5% auto; /* 5% from the top and centered */
-    padding: 30px;
-    border: 5px solid var(--blockbuster-yellow);
-    border-radius: 10px;
-    width: 80%; /* Could be more responsive */
-    max-width: 900px; /* Increased max-width for image */
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7);
-    position: relative;
-    animation: fadeInZoom 0.3s ease-out;
-    color: var(--light-grey);
-    text-align: left; /* Text alignment within modal */
-}
-
-@keyframes fadeInZoom {
-    from { opacity: 0; transform: scale(0.9); }
-    to { opacity: 1; transform: scale(1); }
-}
-
-.close-button {
-    color: var(--blockbuster-yellow);
-    font-size: 3em;
-    font-weight: bold;
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    cursor: pointer;
-    transition: color 0.3s ease;
-    text-shadow: 2px 2px var(--blockbuster-red);
-}
-
-.close-button:hover,
-.close-button:focus {
-    color: white;
-    text-decoration: none;
-}
-
-#modal-movie-title {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 2.8em;
-    color: var(--blockbuster-yellow);
-    margin-top: 0;
-    margin-bottom: 20px;
-    text-align: center;
-    text-shadow: 2px 2px var(--blockbuster-red);
-    border-bottom: 2px dashed var(--blockbuster-red);
-    padding-bottom: 10px;
-}
-
-/* NEW: Flexbox for modal body content */
-.modal-body-content {
-    display: flex;
-    flex-direction: row; /* Default to row for wider screens */
-    gap: 25px; /* Space between poster and plot */
-    align-items: flex-start; /* Align items to the top */
-    margin-bottom: 30px;
-}
-
-.modal-poster {
-    max-width: 250px; /* Max width for the larger poster */
-    height: auto;
-    border: 4px solid var(--blockbuster-red);
-    border-radius: 8px;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
-    flex-shrink: 0; /* Prevent image from shrinking */
-}
-
-#modal-movie-plot {
-    font-family: Arial, sans-serif; /* More readable font for plot */
-    font-size: 1.2em;
-    line-height: 1.6;
-    margin: 0; /* Remove default paragraph margin */
-    color: var(--light-grey);
-    flex-grow: 1; /* Allow plot to take remaining space */
-}
-/* END NEW */
+        .search-input:focus {
+            border-color: var(--blockbuster-yellow);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+            background-color: white;
+        }
 
 
-.modal-footer {
-    text-align: center;
-    border-top: 1px solid rgba(255, 215, 0, 0.3);
-    padding-top: 15px;
-    font-size: 0.9em;
-    color: rgba(255, 255, 255, 0.7);
-}
+        h2 {
+            font-size: 2.8em;
+            color: var(--blockbuster-yellow);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-top: 40px;
+            margin-bottom: 30px;
+            text-shadow: 3px 3px var(--dark-blue);
+            border-bottom: 3px dashed var(--blockbuster-red);
+            padding-bottom: 10px;
+        }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .marquee h1 {
-        font-size: 2em;
-    }
+        .movie-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Increased min-width */
+            gap: 25px;
+            padding: 20px;
+            background-color: var(--dark-blue);
+            border-radius: 8px;
+            border: 3px solid var(--blockbuster-red);
+        }
 
-    .logo-text {
-        font-size: 3.5em;
-    }
+        .movie-card {
+            background-color: var(--blockbuster-yellow);
+            color: var(--blockbuster-blue);
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
+            transition: transform 0.2s ease-in-out;
+            cursor: pointer;
+            border: 3px solid var(--blockbuster-red);
+            display: flex;
+            flex-direction: row; /* Changed to row */
+            align-items: center; /* Align items vertically */
+            justify-content: space-between; /* Space out content horizontally */
+            min-height: 120px; /* Adjusted min-height */
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 1.2em; /* Adjusted font size */
+            text-shadow: 1px 1px var(--blockbuster-red);
+        }
 
-    .slogan-text {
-        font-size: 1.5em;
-    }
+        .movie-card:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.6);
+        }
 
-    .search-input {
-        font-size: 1.2em;
-        padding: 10px 15px;
-    }
+        .movie-card p {
+            font-family: 'Bebas Neue', cursive;
+            font-weight: bold;
+            margin: 0 10px; /* Added horizontal margin */
+            text-align: left;
+            flex: 1; /* Allow text to grow */
+        }
 
-    h2 {
-        font-size: 2em;
-    }
+        /* NEW: Movie Price on Card */
+        .movie-card .movie-price {
+            font-size: 0.9em;
+            color: var(--dark-blue);
+            margin-top: 5px;
+            text-shadow: none;
+            text-align: left;
+        }
+        /* END NEW */
 
-    .movie-card {
-        min-height: 150px; /* Adjust card height for smaller screens */
-    }
+        /* Thumbnail Image on Movie Card */
+        .movie-card img {
+            max-width: 80px; /* Adjusted thumbnail size */
+            height: auto;
+            border: 2px solid var(--blockbuster-red);
+            border-radius: 5px;
+            margin-left: 10px; /* Space between text and image */
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            flex-shrink: 0; /* Don't let the image shrink */
+        }
 
-    .movie-card p {
-        font-size: 1.2em; /* Smaller font for card titles */
-    }
+        .no-movies-found {
+            font-size: 2em;
+            color: var(--light-grey);
+            margin-top: 30px;
+            grid-column: 1 / -1; /* Make it span all columns in the grid */
+            font-style: italic;
+        }
 
-    .movie-card img {
-        max-width: 80px; /* Smaller thumbnail on cards */
-    }
+        .footer {
+            background-color: var(--blockbuster-red);
+            color: white;
+            padding: 20px 0;
+            margin-top: 50px;
+            font-size: 1.1em;
+            letter-spacing: 1px;
+            box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.5);
+            border-top: 5px solid var(--blockbuster-yellow);
+        }
 
-    .modal-content {
-        width: 90%;
-        margin: 10% auto;
-        padding: 20px;
-    }
+        /* Modal Styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1000; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0, 0, 0, 0.8); /* Black w/ opacity */
+            backdrop-filter: blur(5px); /* Slightly blur background */
+            -webkit-backdrop-filter: blur(5px); /* Safari support */
+            padding-top: 60px;
+        }
 
-    #modal-movie-title {
-        font-size: 2em;
-    }
+        .modal-content {
+            background-color: var(--blockbuster-blue);
+            margin: 5% auto; /* 5% from the top and centered */
+            padding: 30px;
+            border: 5px solid var(--blockbuster-yellow);
+            border-radius: 10px;
+            width: 80%; /* Could be more responsive */
+            max-width: 900px; /* Increased max-width for image */
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7);
+            position: relative;
+            animation: fadeInZoom 0.3s ease-out;
+            color: var(--light-grey);
+            text-align: left; /* Text alignment within modal */
+        }
 
-    /* Stack poster and plot on smaller screens */
-    .modal-body-content {
-        flex-direction: column;
-        align-items: center; /* Center items when stacked */
-        gap: 15px;
-    }
+        @keyframes fadeInZoom {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
 
-    .modal-poster {
-        max-width: 200px; /* Smaller poster in modal */
-    }
+        .close-button {
+            color: var(--blockbuster-yellow);
+            font-size: 3em;
+            font-weight: bold;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            text-shadow: 2px 2px var(--blockbuster-red);
+        }
 
-    #modal-movie-plot {
-        font-size: 1em;
-        text-align: center; /* Center plot text when stacked */
-    }
+        .close-button:hover,
+        .close-button:focus {
+            color: white;
+            text-decoration: none;
+        }
 
-    .close-button {
-        font-size: 2.5em;
-        top: 5px;
-        right: 15px;
-    }
-}
+        #modal-movie-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.8em;
+            color: var(--blockbuster-yellow);
+            margin-top: 0;
+            margin-bottom: 10px; /* Reduced margin */
+            text-align: center;
+            text-shadow: 2px 2px var(--blockbuster-red);
+            border-bottom: 2px dashed var(--blockbuster-red);
+            padding-bottom: 5px; /* Reduced padding */
+        }
 
-@media (max-width: 480px) {
-    .marquee h1 {
-        font-size: 1.5em;
-    }
+        /* NEW: Movie Price in Modal */
+        #modal-movie-price {
+            font-size: 1.5em;
+            color: var(--blockbuster-yellow);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        /* END NEW */
 
-    .logo-text {
-        font-size: 2.5em;
-    }
+        .modal-body-content {
+            display: flex;
+            flex-direction: row; /* Default to row for wider screens */
+            gap: 25px; /* Space between poster and plot */
+            align-items: flex-start; /* Align items to the top */
+            margin-bottom: 30px;
+        }
 
-    .slogan-text {
-        font-size: 1.2em;
-    }
+        .modal-poster {
+            max-width: 250px; /* Max width for the larger poster */
+            height: auto;
+            border: 4px solid var(--blockbuster-red);
+            border-radius: 8px;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+            flex-shrink: 0; /* Prevent image from shrinking */
+        }
 
-    .search-input {
-        font-size: 1em;
-        padding: 8px 12px;
-    }
+        #modal-movie-plot {
+            font-family: Arial, sans-serif; /* More readable font for plot */
+            font-size: 1.2em;
+            line-height: 1.6;
+            margin: 0; /* Remove default paragraph margin */
+            color: var(--light-grey);
+            flex-grow: 1; /* Allow plot to take remaining space */
+        }
 
-    h2 {
-        font-size: 1.7em;
-    }
+        .modal-footer {
+            text-align: center;
+            border-top: 1px solid rgba(255, 215, 0, 0.3);
+            padding-top: 15px;
+            font-size: 0.9em;
+            color: rgba(255, 255, 255, 0.7);
+        }
 
-    .movie-grid {
-        grid-template-columns: 1fr;
-    }
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .marquee h1 {
+                font-size: 2em;
+            }
 
-    .movie-card {
-        min-height: 120px;
-    }
+            .logo-text {
+                font-size: 3.5em;
+            }
 
-    .movie-card p {
-        font-size: 1em;
-    }
+            .slogan-text {
+                font-size: 1.5em;
+            }
 
-    .movie-card img {
-        max-width: 60px;
-    }
+            .search-input {
+                font-size: 1.2em;
+                padding: 10px 15px;
+            }
 
-    .modal-content {
-        width: 95%;
-        margin: 5% auto;
-        padding: 15px;
-    }
+            h2 {
+                font-size: 2em;
+            }
 
-    #modal-movie-title {
-        font-size: 1.8em;
-    }
+            .movie-card {
+                min-height: 100px; /* Adjust card height for smaller screens */
+                font-size: 1em; /* Smaller font for card titles */
+            }
 
-    .modal-poster {
-        max-width: 150px;
-    }
+            .movie-card p {
+                margin: 0 5px;
+            }
 
-    #modal-movie-plot {
-        font-size: 0.9em;
-    }
+            .movie-card img {
+                max-width: 60px; /* Smaller thumbnail on cards */
+                margin-left: 5px;
+            }
 
-    .close-button {
-        font-size: 2em;
-        top: 0px;
-        right: 10px;
-    }
-}
+            .modal-content {
+                width: 90%;
+                margin: 10% auto;
+                padding: 20px;
+            }
+
+            #modal-movie-title {
+                font-size: 2em;
+            }
+
+            /* Stack poster and plot on smaller screens */
+            .modal-body-content {
+                flex-direction: column;
+                align-items: center; /* Center items when stacked */
+                gap: 15px;
+            }
+
+            .modal-poster {
+                max-width: 200px; /* Smaller poster in modal */
+            }
+
+            #modal-movie-plot {
+                font-size: 1em;
+                text-align: center; /* Center plot text when stacked */
+            }
+
+            .close-button {
+                font-size: 2.5em;
+                top: 5px;
+                right: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .marquee h1 {
+                font-size: 1.5em;
+            }
+
+            .logo-text {
+                font-size: 2.5em;
+            }
+
+            .slogan-text {
+                font-size: 1.2em;
+            }
+
+            .search-input {
+                font-size: 1em;
+                padding: 8px 12px;
+            }
+
+            h2 {
+                font-size: 1.7em;
+            }
+
+            .movie-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .movie-card {
+                min-height: 80px;
+                font-size: 0.9em;
+            }
+
+            .movie-card p {
+                margin: 0 3px;
+            }
+
+            .movie-card img {
+                max-width: 50px;
+                margin-left: 3px;
+            }
+
+            .modal-content {
+                width: 95%;
+                margin: 5% auto;
+                padding: 15px;
+            }
+
+            #modal-movie-title {
+                font-size: 1.8em;
+            }
+
+            .modal-poster {
+                max-width: 150px;
+            }
+
+            #modal-movie-plot {
+                font-size: 0.9em;
+            }
+
+            .close-button {
+                font-size: 2em;
+                top: 0px;
+                right: 10px;
+            }
+        }
+        ```
+
+---
+
+### 3. Update `script.js`
+
+We'll add a `MOVIE_PRICE` constant and update the `renderMovies` and modal population logic.
+
+```javascript
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOM Content Loaded. Initializing script...');
+
+    const movieListDiv = document.getElementById('movie-list');
+    const movieSearchInput = document.getElementById('movie-search');
+    let allMovies = []; // To store the original list of movie objects {title, plot, posterUrl}
+
+    // Modal elements
+    const movieModal = document.getElementById('movie-modal');
+    const modalMovieTitle = document.getElementById('modal-movie-title');
+    const modalMoviePlot = document.getElementById('modal-movie-plot');
+    const modalMoviePoster = document.getElementById('modal-movie-poster');
+    // NEW: Modal Price Element
+    const modalMoviePrice = document.getElementById('modal-movie-price');
+    // END NEW
+    const closeButton = document.querySelector('.close-button');
+
+    // Define the movie price
+    const MOVIE_PRICE = '$5.00';
+
+    // Define the path to your default unavailable poster
+    const UNAVAILABLE_POSTER_PATH = 'movie_posters/unavailable.jpg';
+    console.log(`Unavailable poster path: ${UNAVAILABLE_POSTER_PATH}`);
+
+    // Helper function to create a clean filename from a movie title
+    const getPosterFilename = (title) => {
+        let cleanedTitle = title.replace(/['":!?]/g, '');
+        cleanedTitle = cleanedTitle.replace(/\s+|-+/g, '_');
+        cleanedTitle = cleanedTitle.replace(/^_|_$/g, '');
+        const filePath = `movie_posters/${cleanedTitle}.jpg`;
+        console.log(`Generated filename for "${title}": ${filePath}`);
+        return filePath;
+    };
+
+    // Function to render movies
+    const renderMovies = (moviesToDisplay) => {
+        console.log(`Rendering ${moviesToDisplay.length} movies...`);
+        movieListDiv.innerHTML = ''; // Clear existing movies
+
+        if (moviesToDisplay.length === 0) {
+            const noMoviesFound = document.createElement('p');
+            noMoviesFound.classList.add('no-movies-found');
+            noMoviesFound.textContent = 'No movies found matching your search.';
+            movieListDiv.appendChild(noMoviesFound);
+            return;
+        }
+
+        moviesToDisplay.forEach(movie => {
+            const movieCard = document.createElement('div');
+            movieCard.classList.add('movie-card');
+
+            // NEW: Movie Title and Price
+            const movieTitleElem = document.createElement('p');
+            movieTitleElem.textContent = movie.title.trim();
+            movieCard.appendChild(movieTitleElem);
+
+            const moviePriceElem = document.createElement('p');
+            moviePriceElem.classList.add('movie-price');
+            moviePriceElem.textContent = MOVIE_PRICE;
+            movieCard.appendChild(moviePriceElem);
+            // END NEW
+
+            const thumbnailImg = document.createElement('img');
+            thumbnailImg.src = movie.posterUrl;
+            thumbnailImg.alt = `${movie.title} Poster`;
+
+            thumbnailImg.onerror = () => {
+                console.warn(`Failed to load poster for "${movie.title}" (${movie.posterUrl}). Using unavailable.jpg.`);
+                thumbnailImg.src = UNAVAILABLE_POSTER_PATH;
+                thumbnailImg.alt = 'Poster not available';
+                thumbnailImg.onerror = null;
+            };
+            movieCard.appendChild(thumbnailImg);
+
+            movieCard.dataset.title = movie.title.trim();
+            movieCard.dataset.plot = movie.plot.trim();
+            movieCard.dataset.poster = movie.posterUrl;
+
+            movieListDiv.appendChild(movieCard);
+        });
+        console.log('Finished rendering movies.');
+    };
+
+    // Fetch movies from Movies.txt
+    fetch('Movies.txt')
+        .then(response => {
+            console.log('Fetched Movies.txt response:', response);
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status} - Could not load Movies.txt`);
+            }
+            return response.text();
+        })
+        .then(text => {
+            console.log('Movies.txt content:', text.substring(0, 200) + '...');
+            allMovies = text.split('\n')
+                            .filter(line => line.trim() !== '')
+                            .map(line => {
+                                const parts = line.split('\t');
+                                if (parts.length >= 2) {
+                                    const title = parts[0].trim();
+                                    const plot = parts.slice(1).join('\t').trim();
+                                    const posterUrl = getPosterFilename(title);
+
+                                    return {
+                                        title: title,
+                                        plot: plot,
+                                        posterUrl: posterUrl
+                                    };
+                                } else {
+                                    console.warn(`Skipping malformed line in Movies.txt: "${line}"`);
+                                    return null;
+                                }
+                            })
+                            .filter(movie => movie !== null);
+
+            console.log('Parsed movie data:', allMovies);
+
+            if (allMovies.length === 0) {
+                movieListDiv.innerHTML = '<p class="no-movies-found">No movies found. Please add titles and plots to Movies.txt and ensure correct formatting (Title\\tPlot).</p>';
+                return;
+            }
+
+            renderMovies(allMovies); // Display all movies initially
+        })
+        .catch(error => {
+            console.error('CRITICAL ERROR: Failed to fetch or parse movie list:', error);
+            movieListDiv.innerHTML = `<p class="error-message">Error loading movies: ${error.message}<br>Please ensure 'Movies.txt' is correctly formatted and your server is running.</p>`;
+        });
+
+    // Add event listener for the search input
+    movieSearchInput.addEventListener('input', (event) => {
+        const searchTerm = event.target.value.toLowerCase();
+        console.log(`Search term: "${searchTerm}"`);
+        const filteredMovies = allMovies.filter(movie =>
+            movie.title.toLowerCase().includes(searchTerm)
+        );
+        renderMovies(filteredMovies); // Re-render movies based on search
+    });
+
+    // Event delegation for clicking movie cards
+    movieListDiv.addEventListener('click', (event) => {
+        const clickedCard = event.target.closest('.movie-card');
+        if (clickedCard) {
+            const title = clickedCard.dataset.title;
+            const plot = clickedCard.dataset.plot;
+            const posterUrl = clickedCard.dataset.poster;
+
+            console.log(`Card clicked: ${title}. Plot: ${plot ? 'Yes' : 'No'}. Poster: ${posterUrl}`);
+
+            if (title && plot && posterUrl) {
+                modalMovieTitle.textContent = title;
+                modalMoviePlot.textContent = plot;
+                modalMoviePoster.src = posterUrl;
+                modalMoviePoster.alt = `${title} Poster`;
+
+                // NEW: Show price in modal
+                modalMoviePrice.textContent = `Price: ${MOVIE_PRICE}`;
+                // END NEW
+
+                modalMoviePoster.onerror = () => {
+                    console.warn(`Failed to load modal poster for "${title}" (${posterUrl}). Using unavailable.jpg.`);
+                    modalMoviePoster.src = UNAVAILABLE_POSTER_PATH;
+                    modalMoviePoster.alt = 'Poster not available';
+                    modalMoviePoster.onerror = null;
+                };
+
+                movieModal.style.display = 'block';
+            } else {
+                console.error("Missing data attributes on clicked card:", clickedCard.dataset);
+            }
+        }
+    });
+
+    // Close the modal when the close button is clicked
+    closeButton.addEventListener('click', () => {
+        console.log('Closing modal...');
+        movieModal.style.display = 'none';
+        modalMoviePoster.src = '';
+    });
+
+    // Close the modal when clicking outside of the modal content
+    window.addEventListener('click', (event) => {
+        if (event.target === movieModal) {
+            console.log('Clicked outside modal. Closing...');
+            movieModal.style.display = 'none';
+            modalMoviePoster.src = '';
+        }
+    });
+});
