@@ -10,9 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalMovieTitle = document.getElementById('modal-movie-title');
     const modalMoviePlot = document.getElementById('modal-movie-plot');
     const modalMoviePoster = document.getElementById('modal-movie-poster');
-    // NEW: Modal Price Element
     const modalMoviePrice = document.getElementById('modal-movie-price');
-    // END NEW
     const closeButton = document.querySelector('.close-button');
 
     // Define the movie price
@@ -27,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let cleanedTitle = title.replace(/['":!?]/g, '');
         cleanedTitle = cleanedTitle.replace(/\s+|-+/g, '_');
         cleanedTitle = cleanedTitle.replace(/^_|_$/g, '');
-        const filePath = `movie_posters/${cleanedTitle}.jpg`;
+        const filePath = `movie_posters/${cleanedTitle.toLowerCase()}.jpg`; // Ensure filename is lowercase
         console.log(`Generated filename for "${title}": ${filePath}`);
         return filePath;
     };
@@ -49,16 +47,20 @@ document.addEventListener('DOMContentLoaded', () => {
             const movieCard = document.createElement('div');
             movieCard.classList.add('movie-card');
 
-            // NEW: Movie Title and Price
+            // NEW: Create a container for text elements (title and price)
+            const movieTextContainer = document.createElement('div');
+            movieTextContainer.classList.add('movie-card-text');
+
             const movieTitleElem = document.createElement('p');
             movieTitleElem.textContent = movie.title.trim();
-            movieCard.appendChild(movieTitleElem);
+            movieTextContainer.appendChild(movieTitleElem); // Append title first
 
             const moviePriceElem = document.createElement('p');
             moviePriceElem.classList.add('movie-price');
             moviePriceElem.textContent = MOVIE_PRICE;
-            movieCard.appendChild(moviePriceElem);
-            // END NEW
+            movieTextContainer.appendChild(moviePriceElem); // Append price second, so it goes under the title
+
+            movieCard.appendChild(movieTextContainer); // Append the text container first to the card
 
             const thumbnailImg = document.createElement('img');
             thumbnailImg.src = movie.posterUrl;
@@ -68,10 +70,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.warn(`Failed to load poster for "${movie.title}" (${movie.posterUrl}). Using unavailable.jpg.`);
                 thumbnailImg.src = UNAVAILABLE_POSTER_PATH;
                 thumbnailImg.alt = 'Poster not available';
-                thumbnailImg.onerror = null;
+                thumbnailImg.onerror = null; // Prevent infinite loop if unavailable.jpg also fails
             };
-            movieCard.appendChild(thumbnailImg);
+            movieCard.appendChild(thumbnailImg); // Append the image second (will be on the right)
 
+            // Store data attributes on the card for modal population
             movieCard.dataset.title = movie.title.trim();
             movieCard.dataset.plot = movie.plot.trim();
             movieCard.dataset.poster = movie.posterUrl;
@@ -91,14 +94,14 @@ document.addEventListener('DOMContentLoaded', () => {
             return response.text();
         })
         .then(text => {
-            console.log('Movies.txt content:', text.substring(0, 200) + '...');
+            console.log('Movies.txt content (first 200 chars):', text.substring(0, 200) + '...');
             allMovies = text.split('\n')
-                            .filter(line => line.trim() !== '')
+                            .filter(line => line.trim() !== '') // Remove empty lines
                             .map(line => {
-                                const parts = line.split('\t');
+                                const parts = line.split('\t'); // Split by tab
                                 if (parts.length >= 2) {
                                     const title = parts[0].trim();
-                                    const plot = parts.slice(1).join('\t').trim();
+                                    const plot = parts.slice(1).join('\t').trim(); // Join remaining parts as plot
                                     const posterUrl = getPosterFilename(title);
 
                                     return {
@@ -108,10 +111,10 @@ document.addEventListener('DOMContentLoaded', () => {
                                     };
                                 } else {
                                     console.warn(`Skipping malformed line in Movies.txt: "${line}"`);
-                                    return null;
+                                    return null; // Return null for malformed lines
                                 }
                             })
-                            .filter(movie => movie !== null);
+                            .filter(movie => movie !== null); // Remove null entries
 
             console.log('Parsed movie data:', allMovies);
 
@@ -137,13 +140,13 @@ document.addEventListener('DOMContentLoaded', () => {
         renderMovies(filteredMovies); // Re-render movies based on search
     });
 
-    // Event delegation for clicking movie cards
+    // Event delegation for clicking movie cards (to open modal)
     movieListDiv.addEventListener('click', (event) => {
         const clickedCard = event.target.closest('.movie-card');
         if (clickedCard) {
             const title = clickedCard.dataset.title;
             const plot = clickedCard.dataset.plot;
-            const posterUrl = clickedCard.dataset.poster;
+            let posterUrl = clickedCard.dataset.poster; // Use let as we might change it if loading fails
 
             console.log(`Card clicked: ${title}. Plot: ${plot ? 'Yes' : 'No'}. Poster: ${posterUrl}`);
 
@@ -153,18 +156,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 modalMoviePoster.src = posterUrl;
                 modalMoviePoster.alt = `${title} Poster`;
 
-                // NEW: Show price in modal
+                // Show price in modal
                 modalMoviePrice.textContent = `Price: ${MOVIE_PRICE}`;
-                // END NEW
 
+                // Handle modal poster load errors
                 modalMoviePoster.onerror = () => {
                     console.warn(`Failed to load modal poster for "${title}" (${posterUrl}). Using unavailable.jpg.`);
                     modalMoviePoster.src = UNAVAILABLE_POSTER_PATH;
                     modalMoviePoster.alt = 'Poster not available';
-                    modalMoviePoster.onerror = null;
+                    modalMoviePoster.onerror = null; // Prevent infinite loop if unavailable.jpg also fails
                 };
 
-                movieModal.style.display = 'block';
+                movieModal.style.display = 'block'; // Show the modal
             } else {
                 console.error("Missing data attributes on clicked card:", clickedCard.dataset);
             }
@@ -175,7 +178,7 @@ document.addEventListener('DOMContentLoaded', () => {
     closeButton.addEventListener('click', () => {
         console.log('Closing modal...');
         movieModal.style.display = 'none';
-        modalMoviePoster.src = '';
+        modalMoviePoster.src = ''; // Clear image src to reset for next open
     });
 
     // Close the modal when clicking outside of the modal content
@@ -183,7 +186,16 @@ document.addEventListener('DOMContentLoaded', () => {
         if (event.target === movieModal) {
             console.log('Clicked outside modal. Closing...');
             movieModal.style.display = 'none';
-            modalMoviePoster.src = '';
+            modalMoviePoster.src = ''; // Clear image src
+        }
+    });
+
+    // Close the modal when the Escape key is pressed
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && movieModal.style.display === 'block') {
+            console.log('Escape key pressed. Closing modal...');
+            movieModal.style.display = 'none';
+            modalMoviePoster.src = ''; // Clear image src
         }
     });
 });
