@@ -381,7 +381,8 @@ h2 {
     .movie-card {
         min-height: 100px; /* Reduced min-height, as content dictates height more now */
         font-size: 1em;
-        padding: 10px; /* Reduced padding */
+        padding: 2px; /* Reduced padding */
+        padding-left: 20px;
     }
 
     .movie-card-text {
@@ -464,7 +465,8 @@ h2 {
     .movie-card {
         min-height: 80px; /* Even smaller min-height */
         font-size: 0.9em;
-        padding: 8px; /* Less padding */
+        padding: 2px; /* Less padding */
+        padding-left: 20px;
     }
 
     .movie-card-text {
