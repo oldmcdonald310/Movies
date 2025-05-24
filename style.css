@@ -159,7 +159,7 @@ h2 {
     border: 3px solid var(--blockbuster-red);
 }
 
-/* MODIFIED: Movie Card for Larger Posters */
+/* MODIFIED: Movie Card to keep poster on the right and maximize its size */
 .movie-card {
     background-color: var(--blockbuster-yellow);
     color: var(--blockbuster-blue);
@@ -170,15 +170,14 @@ h2 {
     cursor: pointer;
     border: 3px solid var(--blockbuster-red);
     display: flex;
-    flex-direction: column; /* CHANGED: Stack title/price above image */
-    align-items: center; /* Center content horizontally */
-    justify-content: space-between; /* Space out content vertically */
-    min-height: 300px; /* ADJUSTED: Increased min-height to accommodate larger poster. Adjust as needed. */
+    flex-direction: row; /* REVERTED: Back to row to keep image on the right */
+    align-items: center; /* Vertically align items in the center */
+    justify-content: space-between; /* Pushes content to edges */
+    min-height: 120px; /* Adjusted min-height for content, will expand with image */
     text-transform: uppercase;
     letter-spacing: 1px;
     font-size: 1.2em;
     text-shadow: 1px 1px var(--blockbuster-red);
-    text-align: center; /* NEW: Center text within card */
 }
 
 .movie-card:hover {
@@ -186,34 +185,45 @@ h2 {
     box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.6);
 }
 
+/* NEW: Container for text content within the card */
+.movie-card-text {
+    display: flex;
+    flex-direction: column; /* Stack title and price */
+    align-items: flex-start; /* Align text to the left */
+    flex-grow: 1; /* Allow text container to take available space */
+    margin-right: 10px; /* Space between text and image */
+    min-width: 0; /* Allow content to shrink if needed */
+}
+
 .movie-card p {
     font-family: 'Bebas Neue', cursive;
     font-weight: bold;
-    margin: 5px 0; /* Adjusted vertical margins for columnar layout */
-    text-align: center; /* NEW: Center text within card */
-    flex: none; /* Prevent text from growing unnecessarily */
+    margin: 0; /* Reset margins for p tags within the new container */
+    text-align: left; /* Keep text left-aligned */
+    overflow: hidden; /* Hide overflow if text is too long */
+    text-overflow: ellipsis; /* Add ellipsis for long text */
+    white-space: nowrap; /* Prevent text from wrapping */
 }
 
 .movie-card .movie-price {
     font-size: 0.9em;
     color: var(--dark-blue);
-    margin-top: 5px;
+    margin-top: 5px; /* Space between title and price */
     text-shadow: none;
-    text-align: center; /* NEW: Center price text */
+    text-align: left;
 }
 
-/* MODIFIED: Thumbnail Image on Movie Card for Larger Posters */
+/* MODIFIED: Thumbnail Image on Movie Card for Larger Posters (right-aligned) */
 .movie-card img {
-    max-width: 100%; /* CHANGED: Allow image to take full width of card content area */
+    max-width: 40%; /* CHANGED: Max width as a percentage of the card's width */
     height: auto;
-    max-height: 200px; /* NEW: Set a max height to prevent excessive vertical stretching. Adjust as needed. */
-    object-fit: contain; /* NEW: Ensures the entire image is visible, scales down if needed */
+    max-height: 150px; /* NEW: Set a maximum height for the image */
+    object-fit: contain; /* Ensures the entire image is visible without cropping */
     border: 2px solid var(--blockbuster-red);
     border-radius: 5px;
-    margin-top: 10px; /* Adjusted margin to separate from text */
-    margin-left: 0; /* Reset margin from previous row-based rule */
+    margin-left: 10px; /* Space between text container and image */
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-    flex-shrink: 0; /* Don't let the image shrink */
+    flex-shrink: 0; /* Prevent the image from shrinking */
 }
 /* END MODIFIED */
 
@@ -236,7 +246,7 @@ h2 {
     border-top: 5px solid var(--blockbuster-yellow);
 }
 
-/* Modal Styles */
+/* Modal Styles - No changes needed here for card layout */
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
@@ -366,19 +376,28 @@ h2 {
         font-size: 2em;
     }
 
-    /* Adjusted for tablet: Card height and image scaling */
+    /* Tablet adjustments for movie cards */
     .movie-card {
-        min-height: 250px; /* Adjusted to fit larger images */
+        min-height: 100px; /* Reduced min-height, as content dictates height more now */
         font-size: 1em;
+        padding: 10px; /* Reduced padding */
+    }
+
+    .movie-card-text {
+        margin-right: 5px; /* Less margin for text container */
     }
 
     .movie-card p {
-        margin: 5px 0;
+        margin: 0; /* Keep margins tight */
+    }
+
+    .movie-card .movie-price {
+        margin-top: 3px; /* Smaller gap */
     }
 
     .movie-card img {
-        max-width: 90%; /* Allow image to be almost full width on tablet */
-        max-height: 180px; /* Maintain a reasonable max height */
+        max-width: 45%; /* Slightly larger percentage for image */
+        max-height: 100px; /* Adjusted max height for smaller screens */
     }
 
     .modal-content {
@@ -437,23 +456,23 @@ h2 {
     }
 
     .movie-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* Stack cards vertically on very small screens */
     }
 
-    /* Adjusted for mobile: Card height and image scaling */
+    /* Mobile adjustments for movie cards */
     .movie-card {
-        min-height: 200px; /* Adjusted to fit larger images, smaller than tablet */
+        min-height: 80px; /* Even smaller min-height */
         font-size: 0.9em;
-        padding: 10px; /* Slightly less padding for smaller screens */
+        padding: 8px; /* Less padding */
     }
 
-    .movie-card p {
-        margin: 3px 0;
+    .movie-card-text {
+        margin-right: 5px;
     }
 
     .movie-card img {
-        max-width: 90%; /* Allow image to be almost full width on mobile */
-        max-height: 140px; /* Further reduced max height for mobile */
+        max-width: 50%; /* Image can take up to 50% of the card width */
+        max-height: 80px; /* Further reduced max height for mobile */
     }
 
     .modal-content {
