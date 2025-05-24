@@ -10,33 +10,25 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalMovieTitle = document.getElementById('modal-movie-title');
     const modalMoviePlot = document.getElementById('modal-movie-plot');
     const modalMoviePoster = document.getElementById('modal-movie-poster');
+    // NEW: Modal Price Element
+    const modalMoviePrice = document.getElementById('modal-movie-price');
+    // END NEW
     const closeButton = document.querySelector('.close-button');
+
+    // Define the movie price
+    const MOVIE_PRICE = '$5.00';
 
     // Define the path to your default unavailable poster
     const UNAVAILABLE_POSTER_PATH = 'movie_posters/unavailable.jpg';
     console.log(`Unavailable poster path: ${UNAVAILABLE_POSTER_PATH}`);
 
     // Helper function to create a clean filename from a movie title
-    // This function needs to EXACTLY match how your files are named.
     const getPosterFilename = (title) => {
-        // Step 1: Remove special characters that are definitely not in filenames (e.g., colons, quotes)
-        // Keep spaces and hyphens if your filenames use them for separation.
         let cleanedTitle = title.replace(/['":!?]/g, '');
-
-        // Step 2: Replace any sequence of whitespace or multiple hyphens with a single underscore
-        // This is a common way to sanitize for filenames.
         cleanedTitle = cleanedTitle.replace(/\s+|-+/g, '_');
-
-        // Ensure no leading/trailing underscores if not desired (e.g., from trimmed spaces)
         cleanedTitle = cleanedTitle.replace(/^_|_$/g, '');
-
-        // Handle specific edge cases if you know them.
-        // For example, if "Star Wars: Episode IV - A New Hope" becomes "Star_Wars_Episode_IV_A_New_Hope.jpg" (no hyphen)
-        // you might need: cleanedTitle = cleanedTitle.replace('_-', '_');
-        // Or, if your files use hyphens for "Star-Wars" instead of "Star_Wars", adjust accordingly.
-
         const filePath = `movie_posters/${cleanedTitle}.jpg`;
-        console.log(`Generated filename for "${title}": ${filePath}`); // Debugging line
+        console.log(`Generated filename for "${title}": ${filePath}`);
         return filePath;
     };
 
@@ -57,32 +49,32 @@ document.addEventListener('DOMContentLoaded', () => {
             const movieCard = document.createElement('div');
             movieCard.classList.add('movie-card');
 
+            // NEW: Movie Title and Price
             const movieTitleElem = document.createElement('p');
             movieTitleElem.textContent = movie.title.trim();
             movieCard.appendChild(movieTitleElem);
 
-            // Add thumbnail image to the card
+            const moviePriceElem = document.createElement('p');
+            moviePriceElem.classList.add('movie-price');
+            moviePriceElem.textContent = MOVIE_PRICE;
+            movieCard.appendChild(moviePriceElem);
+            // END NEW
+
             const thumbnailImg = document.createElement('img');
             thumbnailImg.src = movie.posterUrl;
             thumbnailImg.alt = `${movie.title} Poster`;
 
-            // IMPORTANT: Assign onError *before* setting src if possible, though after is usually fine.
-            // This onError handler should trigger if the specific movie poster fails.
             thumbnailImg.onerror = () => {
                 console.warn(`Failed to load poster for "${movie.title}" (${movie.posterUrl}). Using unavailable.jpg.`);
                 thumbnailImg.src = UNAVAILABLE_POSTER_PATH;
                 thumbnailImg.alt = 'Poster not available';
-
-                // Prevent infinite loop if UNAVAILABLE_POSTER_PATH also fails
-                // By removing the onerror after it uses the fallback.
                 thumbnailImg.onerror = null;
             };
             movieCard.appendChild(thumbnailImg);
 
-            // Store all relevant data on the card for easy access when clicked
             movieCard.dataset.title = movie.title.trim();
             movieCard.dataset.plot = movie.plot.trim();
-            movieCard.dataset.poster = movie.posterUrl; // Original intended poster URL
+            movieCard.dataset.poster = movie.posterUrl;
 
             movieListDiv.appendChild(movieCard);
         });
@@ -94,21 +86,20 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(response => {
             console.log('Fetched Movies.txt response:', response);
             if (!response.ok) {
-                // If the response is not OK (e.g., 404, 500), throw an error
                 throw new Error(`HTTP error! Status: ${response.status} - Could not load Movies.txt`);
             }
             return response.text();
         })
         .then(text => {
-            console.log('Movies.txt content:', text.substring(0, 200) + '...'); // Log first 200 chars
+            console.log('Movies.txt content:', text.substring(0, 200) + '...');
             allMovies = text.split('\n')
-                            .filter(line => line.trim() !== '') // Remove empty lines
+                            .filter(line => line.trim() !== '')
                             .map(line => {
-                                const parts = line.split('\t'); // Split by tab
+                                const parts = line.split('\t');
                                 if (parts.length >= 2) {
                                     const title = parts[0].trim();
                                     const plot = parts.slice(1).join('\t').trim();
-                                    const posterUrl = getPosterFilename(title); // Generate poster URL
+                                    const posterUrl = getPosterFilename(title);
 
                                     return {
                                         title: title,
@@ -117,10 +108,10 @@ document.addEventListener('DOMContentLoaded', () => {
                                     };
                                 } else {
                                     console.warn(`Skipping malformed line in Movies.txt: "${line}"`);
-                                    return null; // Return null for malformed lines
+                                    return null;
                                 }
                             })
-                            .filter(movie => movie !== null); // Remove any null entries from the map
+                            .filter(movie => movie !== null);
 
             console.log('Parsed movie data:', allMovies);
 
@@ -148,33 +139,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Event delegation for clicking movie cards
     movieListDiv.addEventListener('click', (event) => {
-        const clickedCard = event.target.closest('.movie-card'); // Find the closest parent with .movie-card
+        const clickedCard = event.target.closest('.movie-card');
         if (clickedCard) {
             const title = clickedCard.dataset.title;
             const plot = clickedCard.dataset.plot;
-            const posterUrl = clickedCard.dataset.poster; // This is the original intended poster URL
+            const posterUrl = clickedCard.dataset.poster;
 
             console.log(`Card clicked: ${title}. Plot: ${plot ? 'Yes' : 'No'}. Poster: ${posterUrl}`);
 
             if (title && plot && posterUrl) {
                 modalMovieTitle.textContent = title;
                 modalMoviePlot.textContent = plot;
-
-                // Set the src for the modal poster
                 modalMoviePoster.src = posterUrl;
                 modalMoviePoster.alt = `${title} Poster`;
 
-                // This onError handler should trigger if the specific movie poster for the MODAL fails.
+                // NEW: Show price in modal
+                modalMoviePrice.textContent = `Price: ${MOVIE_PRICE}`;
+                // END NEW
+
                 modalMoviePoster.onerror = () => {
                     console.warn(`Failed to load modal poster for "${title}" (${posterUrl}). Using unavailable.jpg.`);
                     modalMoviePoster.src = UNAVAILABLE_POSTER_PATH;
                     modalMoviePoster.alt = 'Poster not available';
-
-                    // Prevent infinite loop if UNAVAILABLE_POSTER_PATH also fails
-                    modalMoviePoster.onerror = null; // Remove the onerror after using the fallback
+                    modalMoviePoster.onerror = null;
                 };
 
-                movieModal.style.display = 'block'; // Show the modal
+                movieModal.style.display = 'block';
             } else {
                 console.error("Missing data attributes on clicked card:", clickedCard.dataset);
             }
@@ -185,7 +175,6 @@ document.addEventListener('DOMContentLoaded', () => {
     closeButton.addEventListener('click', () => {
         console.log('Closing modal...');
         movieModal.style.display = 'none';
-        // Reset modal poster src to prevent old image from flashing
         modalMoviePoster.src = '';
     });
 
@@ -194,7 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (event.target === movieModal) {
             console.log('Clicked outside modal. Closing...');
             movieModal.style.display = 'none';
-            modalMoviePoster.src = ''; // Reset modal poster src
+            modalMoviePoster.src = '';
         }
     });
 });
