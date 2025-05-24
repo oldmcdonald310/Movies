@@ -78,403 +78,405 @@ body {
     bottom: 0;
     background: linear-gradient(45deg, var(--blockbuster-yellow) 25%, transparent 25%, transparent 75%, var(--blockbuster-yellow) 75%),
                 linear-gradient(-45deg, var(--blockbuster-yellow) 25%, transparent 25%, transparent 75%, var(--blockbuster-yellow) 75%);
-            background-size: 20px 20px;
-            opacity: 0.1;
-            animation: light-flicker 1s infinite alternate;
-        }
+    background-size: 20px 20px;
+    opacity: 0.1;
+    animation: light-flicker 1s infinite alternate;
+}
 
-        @keyframes light-flicker {
-            from { opacity: 0.05; }
-            to { opacity: 0.15; }
-        }
+@keyframes light-flicker {
+    from { opacity: 0.05; }
+    to { opacity: 0.15; }
+}
 
+.logo-text {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 5em;
+    color: var(--blockbuster-yellow);
+    text-shadow: 5px 5px var(--blockbuster-red);
+    display: block;
+    line-height: 1;
+}
 
-        .logo-text {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 5em;
-            color: var(--blockbuster-yellow);
-            text-shadow: 5px 5px var(--blockbuster-red);
-            display: block;
-            line-height: 1;
-        }
+.slogan-text {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 2em;
+    color: white;
+    letter-spacing: 2px;
+    margin-top: 10px;
+    text-shadow: 2px 2px var(--blockbuster-red);
+}
 
-        .slogan-text {
-            font-family: 'Bebas Neue', cursive;
-            font-size: 2em;
-            color: white;
-            letter-spacing: 2px;
-            margin-top: 10px;
-            text-shadow: 2px 2px var(--blockbuster-red);
-        }
+.search-container {
+    margin-bottom: 30px;
+}
 
-        .search-container {
-            margin-bottom: 30px;
-        }
+.search-input {
+    width: 80%;
+    max-width: 500px;
+    padding: 15px 20px;
+    font-size: 1.5em;
+    border: 4px solid var(--blockbuster-red);
+    border-radius: 8px;
+    background-color: var(--light-grey);
+    color: var(--dark-blue);
+    font-family: 'Bebas Neue', cursive;
+    letter-spacing: 1px;
+    outline: none;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+}
 
-        .search-input {
-            width: 80%;
-            max-width: 500px;
-            padding: 15px 20px;
-            font-size: 1.5em;
-            border: 4px solid var(--blockbuster-red);
-            border-radius: 8px;
-            background-color: var(--light-grey);
-            color: var(--dark-blue);
-            font-family: 'Bebas Neue', cursive;
-            letter-spacing: 1px;
-            outline: none;
-            transition: all 0.3s ease;
-            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
-        }
+.search-input::placeholder {
+    color: #666;
+    opacity: 0.8;
+}
 
-        .search-input::placeholder {
-            color: #666;
-            opacity: 0.8;
-        }
+.search-input:focus {
+    border-color: var(--blockbuster-yellow);
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+    background-color: white;
+}
 
-        .search-input:focus {
-            border-color: var(--blockbuster-yellow);
-            box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
-            background-color: white;
-        }
+h2 {
+    font-size: 2.8em;
+    color: var(--blockbuster-yellow);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-top: 40px;
+    margin-bottom: 30px;
+    text-shadow: 3px 3px var(--dark-blue);
+    border-bottom: 3px dashed var(--blockbuster-red);
+    padding-bottom: 10px;
+}
 
+.movie-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+    padding: 20px;
+    background-color: var(--dark-blue);
+    border-radius: 8px;
+    border: 3px solid var(--blockbuster-red);
+}
 
-        h2 {
-            font-size: 2.8em;
-            color: var(--blockbuster-yellow);
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-top: 40px;
-            margin-bottom: 30px;
-            text-shadow: 3px 3px var(--dark-blue);
-            border-bottom: 3px dashed var(--blockbuster-red);
-            padding-bottom: 10px;
-        }
+/* MODIFIED: Movie Card for Larger Posters */
+.movie-card {
+    background-color: var(--blockbuster-yellow);
+    color: var(--blockbuster-blue);
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
+    transition: transform 0.2s ease-in-out;
+    cursor: pointer;
+    border: 3px solid var(--blockbuster-red);
+    display: flex;
+    flex-direction: column; /* CHANGED: Stack title/price above image */
+    align-items: center; /* Center content horizontally */
+    justify-content: space-between; /* Space out content vertically */
+    min-height: 300px; /* ADJUSTED: Increased min-height to accommodate larger poster. Adjust as needed. */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 1.2em;
+    text-shadow: 1px 1px var(--blockbuster-red);
+    text-align: center; /* NEW: Center text within card */
+}
 
-        .movie-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Increased min-width */
-            gap: 25px;
-            padding: 20px;
-            background-color: var(--dark-blue);
-            border-radius: 8px;
-            border: 3px solid var(--blockbuster-red);
-        }
+.movie-card:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.6);
+}
 
-        .movie-card {
-            background-color: var(--blockbuster-yellow);
-            color: var(--blockbuster-blue);
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
-            transition: transform 0.2s ease-in-out;
-            cursor: pointer;
-            border: 3px solid var(--blockbuster-red);
-            display: flex;
-            flex-direction: row; /* Changed to row */
-            align-items: center; /* Align items vertically */
-            justify-content: space-between; /* Space out content horizontally */
-            min-height: 120px; /* Adjusted min-height */
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 1.2em; /* Adjusted font size */
-            text-shadow: 1px 1px var(--blockbuster-red);
-        }
+.movie-card p {
+    font-family: 'Bebas Neue', cursive;
+    font-weight: bold;
+    margin: 5px 0; /* Adjusted vertical margins for columnar layout */
+    text-align: center; /* NEW: Center text within card */
+    flex: none; /* Prevent text from growing unnecessarily */
+}
 
-        .movie-card:hover {
-            transform: translateY(-8px) scale(1.03);
-            box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.6);
-        }
+.movie-card .movie-price {
+    font-size: 0.9em;
+    color: var(--dark-blue);
+    margin-top: 5px;
+    text-shadow: none;
+    text-align: center; /* NEW: Center price text */
+}
 
-        .movie-card p {
-            font-family: 'Bebas Neue', cursive;
-            font-weight: bold;
-            margin: 0 10px; /* Added horizontal margin */
-            text-align: left;
-            flex: 1; /* Allow text to grow */
-        }
+/* MODIFIED: Thumbnail Image on Movie Card for Larger Posters */
+.movie-card img {
+    max-width: 100%; /* CHANGED: Allow image to take full width of card content area */
+    height: auto;
+    max-height: 200px; /* NEW: Set a max height to prevent excessive vertical stretching. Adjust as needed. */
+    object-fit: contain; /* NEW: Ensures the entire image is visible, scales down if needed */
+    border: 2px solid var(--blockbuster-red);
+    border-radius: 5px;
+    margin-top: 10px; /* Adjusted margin to separate from text */
+    margin-left: 0; /* Reset margin from previous row-based rule */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    flex-shrink: 0; /* Don't let the image shrink */
+}
+/* END MODIFIED */
 
-        /* NEW: Movie Price on Card */
-        .movie-card .movie-price {
-            font-size: 0.9em;
-            color: var(--dark-blue);
-            margin-top: 5px;
-            text-shadow: none;
-            text-align: left;
-        }
-        /* END NEW */
+.no-movies-found {
+    font-size: 2em;
+    color: var(--light-grey);
+    margin-top: 30px;
+    grid-column: 1 / -1; /* Make it span all columns in the grid */
+    font-style: italic;
+}
 
-        /* Thumbnail Image on Movie Card */
-        .movie-card img {
-            max-width: 80px; /* Adjusted thumbnail size */
-            height: auto;
-            border: 2px solid var(--blockbuster-red);
-            border-radius: 5px;
-            margin-left: 10px; /* Space between text and image */
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-            flex-shrink: 0; /* Don't let the image shrink */
-        }
+.footer {
+    background-color: var(--blockbuster-red);
+    color: white;
+    padding: 20px 0;
+    margin-top: 50px;
+    font-size: 1.1em;
+    letter-spacing: 1px;
+    box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.5);
+    border-top: 5px solid var(--blockbuster-yellow);
+}
 
-        .no-movies-found {
-            font-size: 2em;
-            color: var(--light-grey);
-            margin-top: 30px;
-            grid-column: 1 / -1; /* Make it span all columns in the grid */
-            font-style: italic;
-        }
+/* Modal Styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.8); /* Black w/ opacity */
+    backdrop-filter: blur(5px); /* Slightly blur background */
+    -webkit-backdrop-filter: blur(5px); /* Safari support */
+    padding-top: 60px;
+}
 
-        .footer {
-            background-color: var(--blockbuster-red);
-            color: white;
-            padding: 20px 0;
-            margin-top: 50px;
-            font-size: 1.1em;
-            letter-spacing: 1px;
-            box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.5);
-            border-top: 5px solid var(--blockbuster-yellow);
-        }
+.modal-content {
+    background-color: var(--blockbuster-blue);
+    margin: 5% auto; /* 5% from the top and centered */
+    padding: 30px;
+    border: 5px solid var(--blockbuster-yellow);
+    border-radius: 10px;
+    width: 80%; /* Could be more responsive */
+    max-width: 900px; /* Increased max-width for image */
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7);
+    position: relative;
+    animation: fadeInZoom 0.3s ease-out;
+    color: var(--light-grey);
+    text-align: left; /* Text alignment within modal */
+}
 
-        /* Modal Styles */
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1000; /* Sit on top */
-            left: 0;
-            top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgba(0, 0, 0, 0.8); /* Black w/ opacity */
-            backdrop-filter: blur(5px); /* Slightly blur background */
-            -webkit-backdrop-filter: blur(5px); /* Safari support */
-            padding-top: 60px;
-        }
+@keyframes fadeInZoom {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
 
-        .modal-content {
-            background-color: var(--blockbuster-blue);
-            margin: 5% auto; /* 5% from the top and centered */
-            padding: 30px;
-            border: 5px solid var(--blockbuster-yellow);
-            border-radius: 10px;
-            width: 80%; /* Could be more responsive */
-            max-width: 900px; /* Increased max-width for image */
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7);
-            position: relative;
-            animation: fadeInZoom 0.3s ease-out;
-            color: var(--light-grey);
-            text-align: left; /* Text alignment within modal */
-        }
+.close-button {
+    color: var(--blockbuster-yellow);
+    font-size: 3em;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    text-shadow: 2px 2px var(--blockbuster-red);
+}
 
-        @keyframes fadeInZoom {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
-        }
+.close-button:hover,
+.close-button:focus {
+    color: white;
+    text-decoration: none;
+}
 
-        .close-button {
-            color: var(--blockbuster-yellow);
-            font-size: 3em;
-            font-weight: bold;
-            position: absolute;
-            top: 10px;
-            right: 20px;
-            cursor: pointer;
-            transition: color 0.3s ease;
-            text-shadow: 2px 2px var(--blockbuster-red);
-        }
+#modal-movie-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.8em;
+    color: var(--blockbuster-yellow);
+    margin-top: 0;
+    margin-bottom: 10px;
+    text-align: center;
+    text-shadow: 2px 2px var(--blockbuster-red);
+    border-bottom: 2px dashed var(--blockbuster-red);
+    padding-bottom: 5px;
+}
 
-        .close-button:hover,
-        .close-button:focus {
-            color: white;
-            text-decoration: none;
-        }
+#modal-movie-price {
+    font-size: 1.5em;
+    color: var(--blockbuster-yellow);
+    text-align: center;
+    margin-bottom: 20px;
+}
 
-        #modal-movie-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2.8em;
-            color: var(--blockbuster-yellow);
-            margin-top: 0;
-            margin-bottom: 10px; /* Reduced margin */
-            text-align: center;
-            text-shadow: 2px 2px var(--blockbuster-red);
-            border-bottom: 2px dashed var(--blockbuster-red);
-            padding-bottom: 5px; /* Reduced padding */
-        }
+.modal-body-content {
+    display: flex;
+    flex-direction: row;
+    gap: 25px;
+    align-items: flex-start;
+    margin-bottom: 30px;
+}
 
-        /* NEW: Movie Price in Modal */
-        #modal-movie-price {
-            font-size: 1.5em;
-            color: var(--blockbuster-yellow);
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        /* END NEW */
+.modal-poster {
+    max-width: 250px;
+    height: auto;
+    border: 4px solid var(--blockbuster-red);
+    border-radius: 8px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+    flex-shrink: 0;
+}
 
-        .modal-body-content {
-            display: flex;
-            flex-direction: row; /* Default to row for wider screens */
-            gap: 25px; /* Space between poster and plot */
-            align-items: flex-start; /* Align items to the top */
-            margin-bottom: 30px;
-        }
+#modal-movie-plot {
+    font-family: Arial, sans-serif;
+    font-size: 1.2em;
+    line-height: 1.6;
+    margin: 0;
+    color: var(--light-grey);
+    flex-grow: 1;
+}
 
-        .modal-poster {
-            max-width: 250px; /* Max width for the larger poster */
-            height: auto;
-            border: 4px solid var(--blockbuster-red);
-            border-radius: 8px;
-            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
-            flex-shrink: 0; /* Prevent image from shrinking */
-        }
+.modal-footer {
+    text-align: center;
+    border-top: 1px solid rgba(255, 215, 0, 0.3);
+    padding-top: 15px;
+    font-size: 0.9em;
+    color: rgba(255, 255, 255, 0.7);
+}
 
-        #modal-movie-plot {
-            font-family: Arial, sans-serif; /* More readable font for plot */
-            font-size: 1.2em;
-            line-height: 1.6;
-            margin: 0; /* Remove default paragraph margin */
-            color: var(--light-grey);
-            flex-grow: 1; /* Allow plot to take remaining space */
-        }
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .marquee h1 {
+        font-size: 2em;
+    }
 
-        .modal-footer {
-            text-align: center;
-            border-top: 1px solid rgba(255, 215, 0, 0.3);
-            padding-top: 15px;
-            font-size: 0.9em;
-            color: rgba(255, 255, 255, 0.7);
-        }
+    .logo-text {
+        font-size: 3.5em;
+    }
 
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .marquee h1 {
-                font-size: 2em;
-            }
+    .slogan-text {
+        font-size: 1.5em;
+    }
 
-            .logo-text {
-                font-size: 3.5em;
-            }
+    .search-input {
+        font-size: 1.2em;
+        padding: 10px 15px;
+    }
 
-            .slogan-text {
-                font-size: 1.5em;
-            }
+    h2 {
+        font-size: 2em;
+    }
 
-            .search-input {
-                font-size: 1.2em;
-                padding: 10px 15px;
-            }
+    /* Adjusted for tablet: Card height and image scaling */
+    .movie-card {
+        min-height: 250px; /* Adjusted to fit larger images */
+        font-size: 1em;
+    }
 
-            h2 {
-                font-size: 2em;
-            }
+    .movie-card p {
+        margin: 5px 0;
+    }
 
-            .movie-card {
-                min-height: 100px; /* Adjust card height for smaller screens */
-                font-size: 1em; /* Smaller font for card titles */
-            }
+    .movie-card img {
+        max-width: 90%; /* Allow image to be almost full width on tablet */
+        max-height: 180px; /* Maintain a reasonable max height */
+    }
 
-            .movie-card p {
-                margin: 0 5px;
-            }
+    .modal-content {
+        width: 90%;
+        margin: 10% auto;
+        padding: 20px;
+    }
 
-            .movie-card img {
-                max-width: 60px; /* Smaller thumbnail on cards */
-                margin-left: 5px;
-            }
+    #modal-movie-title {
+        font-size: 2em;
+    }
 
-            .modal-content {
-                width: 90%;
-                margin: 10% auto;
-                padding: 20px;
-            }
+    /* Stack poster and plot on smaller screens */
+    .modal-body-content {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
 
-            #modal-movie-title {
-                font-size: 2em;
-            }
+    .modal-poster {
+        max-width: 200px;
+    }
 
-            /* Stack poster and plot on smaller screens */
-            .modal-body-content {
-                flex-direction: column;
-                align-items: center; /* Center items when stacked */
-                gap: 15px;
-            }
+    #modal-movie-plot {
+        font-size: 1em;
+        text-align: center;
+    }
 
-            .modal-poster {
-                max-width: 200px; /* Smaller poster in modal */
-            }
+    .close-button {
+        font-size: 2.5em;
+        top: 5px;
+        right: 15px;
+    }
+}
 
-            #modal-movie-plot {
-                font-size: 1em;
-                text-align: center; /* Center plot text when stacked */
-            }
+@media (max-width: 480px) {
+    .marquee h1 {
+        font-size: 1.5em;
+    }
 
-            .close-button {
-                font-size: 2.5em;
-                top: 5px;
-                right: 15px;
-            }
-        }
+    .logo-text {
+        font-size: 2.5em;
+    }
 
-        @media (max-width: 480px) {
-            .marquee h1 {
-                font-size: 1.5em;
-            }
+    .slogan-text {
+        font-size: 1.2em;
+    }
 
-            .logo-text {
-                font-size: 2.5em;
-            }
+    .search-input {
+        font-size: 1em;
+        padding: 8px 12px;
+    }
 
-            .slogan-text {
-                font-size: 1.2em;
-            }
+    h2 {
+        font-size: 1.7em;
+    }
 
-            .search-input {
-                font-size: 1em;
-                padding: 8px 12px;
-            }
+    .movie-grid {
+        grid-template-columns: 1fr;
+    }
 
-            h2 {
-                font-size: 1.7em;
-            }
+    /* Adjusted for mobile: Card height and image scaling */
+    .movie-card {
+        min-height: 200px; /* Adjusted to fit larger images, smaller than tablet */
+        font-size: 0.9em;
+        padding: 10px; /* Slightly less padding for smaller screens */
+    }
 
-            .movie-grid {
-                grid-template-columns: 1fr;
-            }
+    .movie-card p {
+        margin: 3px 0;
+    }
 
-            .movie-card {
-                min-height: 80px;
-                font-size: 0.9em;
-            }
+    .movie-card img {
+        max-width: 90%; /* Allow image to be almost full width on mobile */
+        max-height: 140px; /* Further reduced max height for mobile */
+    }
 
-            .movie-card p {
-                margin: 0 3px;
-            }
+    .modal-content {
+        width: 95%;
+        margin: 5% auto;
+        padding: 15px;
+    }
 
-            .movie-card img {
-                max-width: 50px;
-                margin-left: 3px;
-            }
+    #modal-movie-title {
+        font-size: 1.8em;
+    }
 
-            .modal-content {
-                width: 95%;
-                margin: 5% auto;
-                padding: 15px;
-            }
+    .modal-poster {
+        max-width: 150px;
+    }
 
-            #modal-movie-title {
-                font-size: 1.8em;
-            }
+    #modal-movie-plot {
+        font-size: 0.9em;
+    }
 
-            .modal-poster {
-                max-width: 150px;
-            }
-
-            #modal-movie-plot {
-                font-size: 0.9em;
-            }
-
-            .close-button {
-                font-size: 2em;
-                top: 0px;
-                right: 10px;
-            }
-        }
-        
+    .close-button {
+        font-size: 2em;
+        top: 0px;
+        right: 10px;
+    }
+}
