@@ -7,15 +7,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const movieModal = document.getElementById('movie-modal');
     const modalMovieTitle = document.getElementById('modal-movie-title');
     const modalMoviePlot = document.getElementById('modal-movie-plot');
-    const modalMoviePoster = document.getElementById('modal-movie-poster'); // NEW: Modal poster element
+    const modalMoviePoster = document.getElementById('modal-movie-poster');
     const closeButton = document.querySelector('.close-button');
 
+    // Define the path to your default unavailable poster
+    const UNAVAILABLE_POSTER_PATH = 'movie_posters/unavailable.jpg';
+
     // Helper function to create a clean filename from a movie title
-    // Example: "Jurassic Park" -> "Jurassic_Park.jpg"
     const getPosterFilename = (title) => {
-        // Replace spaces with underscores
-        // Replace colons, slashes, etc., with underscores or remove them
-        // This is a common approach, but ensure your filenames match!
         const cleanedTitle = title.replace(/[^a-zA-Z0-9\s-]/g, '').replace(/\s+/g, '_');
         return `movie_posters/${cleanedTitle}.jpg`;
     };
@@ -40,22 +39,21 @@ document.addEventListener('DOMContentLoaded', () => {
             movieTitleElem.textContent = movie.title.trim();
             movieCard.appendChild(movieTitleElem);
 
-            // NEW: Add thumbnail image to the card
+            // Add thumbnail image to the card
             const thumbnailImg = document.createElement('img');
             thumbnailImg.src = movie.posterUrl;
             thumbnailImg.alt = `${movie.title} Poster`;
-            // Add an error handler for images that might not exist
+            // If the specific poster is not found, use the unavailable one
             thumbnailImg.onerror = () => {
-                thumbnailImg.src = 'path/to/default_poster.jpg'; // Optional: A default image if poster not found
+                thumbnailImg.src = UNAVAILABLE_POSTER_PATH;
                 thumbnailImg.alt = 'Poster not available';
             };
             movieCard.appendChild(thumbnailImg);
-            // END NEW
 
             // Store all relevant data on the card for easy access when clicked
             movieCard.dataset.title = movie.title.trim();
             movieCard.dataset.plot = movie.plot.trim();
-            movieCard.dataset.poster = movie.posterUrl; // Store the poster URL as well
+            movieCard.dataset.poster = movie.posterUrl;
 
             movieListDiv.appendChild(movieCard);
         });
@@ -113,17 +111,17 @@ document.addEventListener('DOMContentLoaded', () => {
         if (clickedCard) {
             const title = clickedCard.dataset.title;
             const plot = clickedCard.dataset.plot;
-            const posterUrl = clickedCard.dataset.poster; // NEW: Get poster URL from data attribute
+            const posterUrl = clickedCard.dataset.poster;
 
             if (title && plot && posterUrl) {
                 modalMovieTitle.textContent = title;
                 modalMoviePlot.textContent = plot;
-                modalMoviePoster.src = posterUrl; // Set the source for the modal poster
-                modalMoviePoster.alt = `${title} Poster`; // Set alt text for accessibility
+                modalMoviePoster.src = posterUrl;
+                modalMoviePoster.alt = `${title} Poster`;
 
-                // Add an error handler for the modal poster in case the file doesn't exist
+                // If the specific poster for the modal is not found, use the unavailable one
                 modalMoviePoster.onerror = () => {
-                    modalMoviePoster.src = 'path/to/default_poster.jpg'; // Optional: default image
+                    modalMoviePoster.src = UNAVAILABLE_POSTER_PATH;
                     modalMoviePoster.alt = 'Poster not available';
                 };
 
