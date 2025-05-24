@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const movieCard = document.createElement('div');
             movieCard.classList.add('movie-card');
 
-            // NEW: Create a container for text elements (title and price)
+            // Create a container for text elements (title and price)
             const movieTextContainer = document.createElement('div');
             movieTextContainer.classList.add('movie-card-text');
 
