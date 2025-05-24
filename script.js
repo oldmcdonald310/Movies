@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let cleanedTitle = title.replace(/['":!?]/g, '');
         cleanedTitle = cleanedTitle.replace(/\s+|-+/g, '_');
         cleanedTitle = cleanedTitle.replace(/^_|_$/g, '');
-        const filePath = `movie_posters/${cleanedTitle.toLowerCase()}.jpg`; // Ensure filename is lowercase
+        const filePath = `movie_posters/${cleanedTitle}.jpg`; // Ensure filename is lowercase
         console.log(`Generated filename for "${title}": ${filePath}`);
         return filePath;
     };
