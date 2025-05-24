@@ -177,7 +177,7 @@ h2 {
     min-height: 120px; /* Adjusted min-height for content, will expand with image */
     text-transform: uppercase;
     letter-spacing: 1px;
-    font-size: 1.2em;
+    font-size: 1.5em;
     text-shadow: 1px 1px var(--blockbuster-red);
 }
 
