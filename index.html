@@ -9,19 +9,20 @@
 <body>
     <header class="marquee">
         <div class="marquee-content">
-            <h1>RETRO MOVIE Sales - YOUR ULTIMATE Movie EXPERIENCE!</h1>
+            <h1>RETRO MOVIE RENTALS - YOUR ULTIMATE BLOCKBUSTER EXPERIENCE!</h1>
         </div>
     </header>
 
     <main class="container">
         <div class="blockbuster-sign">
-            <span class="logo-text">Rantiques</span>
+            <span class="logo-text">BLOCKBUSTER</span>
             <span class="slogan-text">HOME VIDEO</span>
         </div>
 
         <div class="search-container">
             <input type="text" id="movie-search" placeholder="Search for a movie..." class="search-input">
         </div>
+
         <h2>NOW SHOWING</h2>
         <div id="movie-list" class="movie-grid">
             </div>
@@ -31,6 +32,16 @@
         <p>&copy; 2025 Retro Movie Rentals. All rights reserved. Be Kind, Rewind!</p>
     </footer>
 
+    <div id="movie-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h3 id="modal-movie-title"></h3>
+            <p id="modal-movie-plot"></p>
+            <div class="modal-footer">
+                <p>Enjoy your retro movie experience!</p>
+            </div>
+        </div>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
