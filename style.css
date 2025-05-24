@@ -171,11 +171,14 @@ h2 {
     cursor: pointer;
     border: 3px solid var(--blockbuster-red);
     display: flex;
+    flex-direction: column; /* Changed to column to stack title and image */
     align-items: center;
-    justify-content: center;
-    min-height: 100px;
+    justify-content: space-between; /* Space out content vertically */
+    min-height: 180px; /* Increased min-height to accommodate image */
     text-transform: uppercase;
     letter-spacing: 1px;
+    font-size: 1.5em; /* Default font size for card text */
+    text-shadow: 1px 1px var(--blockbuster-red);
 }
 
 .movie-card:hover {
@@ -185,11 +188,20 @@ h2 {
 
 .movie-card p {
     font-family: 'Bebas Neue', cursive;
-    font-size: 1.8em;
     font-weight: bold;
-    margin: 0;
-    text-shadow: 1px 1px var(--blockbuster-red);
+    margin: 10px 0 0 0; /* Margin for the title above image */
 }
+
+/* NEW: Thumbnail Image on Movie Card */
+.movie-card img {
+    max-width: 100px; /* Set a max width for thumbnails */
+    height: auto; /* Maintain aspect ratio */
+    border: 2px solid var(--blockbuster-red);
+    border-radius: 5px;
+    margin-top: 10px; /* Space between title and image */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+/* END NEW */
 
 .no-movies-found {
     font-size: 2em;
@@ -210,7 +222,7 @@ h2 {
     border-top: 5px solid var(--blockbuster-yellow);
 }
 
-/* NEW: Modal Styles */
+/* Modal Styles */
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
@@ -233,7 +245,7 @@ h2 {
     border: 5px solid var(--blockbuster-yellow);
     border-radius: 10px;
     width: 80%; /* Could be more responsive */
-    max-width: 700px; /* Max width */
+    max-width: 900px; /* Increased max-width for image */
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7);
     position: relative;
     animation: fadeInZoom 0.3s ease-out;
@@ -276,13 +288,34 @@ h2 {
     padding-bottom: 10px;
 }
 
+/* NEW: Flexbox for modal body content */
+.modal-body-content {
+    display: flex;
+    flex-direction: row; /* Default to row for wider screens */
+    gap: 25px; /* Space between poster and plot */
+    align-items: flex-start; /* Align items to the top */
+    margin-bottom: 30px;
+}
+
+.modal-poster {
+    max-width: 250px; /* Max width for the larger poster */
+    height: auto;
+    border: 4px solid var(--blockbuster-red);
+    border-radius: 8px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+    flex-shrink: 0; /* Prevent image from shrinking */
+}
+
 #modal-movie-plot {
     font-family: Arial, sans-serif; /* More readable font for plot */
     font-size: 1.2em;
     line-height: 1.6;
-    margin-bottom: 30px;
+    margin: 0; /* Remove default paragraph margin */
     color: var(--light-grey);
+    flex-grow: 1; /* Allow plot to take remaining space */
 }
+/* END NEW */
+
 
 .modal-footer {
     text-align: center;
@@ -291,8 +324,6 @@ h2 {
     font-size: 0.9em;
     color: rgba(255, 255, 255, 0.7);
 }
-/* END NEW */
-
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
@@ -317,8 +348,16 @@ h2 {
         font-size: 2em;
     }
 
+    .movie-card {
+        min-height: 150px; /* Adjust card height for smaller screens */
+    }
+
     .movie-card p {
-        font-size: 1.5em;
+        font-size: 1.2em; /* Smaller font for card titles */
+    }
+
+    .movie-card img {
+        max-width: 80px; /* Smaller thumbnail on cards */
     }
 
     .modal-content {
@@ -331,8 +370,20 @@ h2 {
         font-size: 2em;
     }
 
+    /* Stack poster and plot on smaller screens */
+    .modal-body-content {
+        flex-direction: column;
+        align-items: center; /* Center items when stacked */
+        gap: 15px;
+    }
+
+    .modal-poster {
+        max-width: 200px; /* Smaller poster in modal */
+    }
+
     #modal-movie-plot {
         font-size: 1em;
+        text-align: center; /* Center plot text when stacked */
     }
 
     .close-button {
@@ -368,6 +419,18 @@ h2 {
         grid-template-columns: 1fr;
     }
 
+    .movie-card {
+        min-height: 120px;
+    }
+
+    .movie-card p {
+        font-size: 1em;
+    }
+
+    .movie-card img {
+        max-width: 60px;
+    }
+
     .modal-content {
         width: 95%;
         margin: 5% auto;
@@ -376,6 +439,10 @@ h2 {
 
     #modal-movie-title {
         font-size: 1.8em;
+    }
+
+    .modal-poster {
+        max-width: 150px;
     }
 
     #modal-movie-plot {
