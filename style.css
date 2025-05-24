@@ -6,6 +6,7 @@
     --blockbuster-red: #CC0000;
     --dark-blue: #002B5C;
     --light-grey: #e0e0e0;
+    --black: #000;
 }
 
 body {
@@ -106,7 +107,6 @@ body {
     text-shadow: 2px 2px var(--blockbuster-red);
 }
 
-/* NEW: Search Bar Styles */
 .search-container {
     margin-bottom: 30px;
 }
@@ -137,7 +137,6 @@ body {
     box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
     background-color: white;
 }
-/* END NEW */
 
 
 h2 {
@@ -179,16 +178,17 @@ h2 {
     letter-spacing: 1px;
 }
 
+.movie-card:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.6);
+}
+
 .movie-card p {
     font-family: 'Bebas Neue', cursive;
     font-size: 1.8em;
     font-weight: bold;
     margin: 0;
     text-shadow: 1px 1px var(--blockbuster-red);
-}
-
-.movie-card.hidden {
-    display: none; /* Used by JavaScript to hide non-matching movies */
 }
 
 .no-movies-found {
@@ -209,6 +209,90 @@ h2 {
     box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.5);
     border-top: 5px solid var(--blockbuster-yellow);
 }
+
+/* NEW: Modal Styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.8); /* Black w/ opacity */
+    backdrop-filter: blur(5px); /* Slightly blur background */
+    -webkit-backdrop-filter: blur(5px); /* Safari support */
+    padding-top: 60px;
+}
+
+.modal-content {
+    background-color: var(--blockbuster-blue);
+    margin: 5% auto; /* 5% from the top and centered */
+    padding: 30px;
+    border: 5px solid var(--blockbuster-yellow);
+    border-radius: 10px;
+    width: 80%; /* Could be more responsive */
+    max-width: 700px; /* Max width */
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7);
+    position: relative;
+    animation: fadeInZoom 0.3s ease-out;
+    color: var(--light-grey);
+    text-align: left; /* Text alignment within modal */
+}
+
+@keyframes fadeInZoom {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.close-button {
+    color: var(--blockbuster-yellow);
+    font-size: 3em;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    text-shadow: 2px 2px var(--blockbuster-red);
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: white;
+    text-decoration: none;
+}
+
+#modal-movie-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.8em;
+    color: var(--blockbuster-yellow);
+    margin-top: 0;
+    margin-bottom: 20px;
+    text-align: center;
+    text-shadow: 2px 2px var(--blockbuster-red);
+    border-bottom: 2px dashed var(--blockbuster-red);
+    padding-bottom: 10px;
+}
+
+#modal-movie-plot {
+    font-family: Arial, sans-serif; /* More readable font for plot */
+    font-size: 1.2em;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    color: var(--light-grey);
+}
+
+.modal-footer {
+    text-align: center;
+    border-top: 1px solid rgba(255, 215, 0, 0.3);
+    padding-top: 15px;
+    font-size: 0.9em;
+    color: rgba(255, 255, 255, 0.7);
+}
+/* END NEW */
+
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
@@ -236,6 +320,26 @@ h2 {
     .movie-card p {
         font-size: 1.5em;
     }
+
+    .modal-content {
+        width: 90%;
+        margin: 10% auto;
+        padding: 20px;
+    }
+
+    #modal-movie-title {
+        font-size: 2em;
+    }
+
+    #modal-movie-plot {
+        font-size: 1em;
+    }
+
+    .close-button {
+        font-size: 2.5em;
+        top: 5px;
+        right: 15px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -262,5 +366,25 @@ h2 {
 
     .movie-grid {
         grid-template-columns: 1fr;
+    }
+
+    .modal-content {
+        width: 95%;
+        margin: 5% auto;
+        padding: 15px;
+    }
+
+    #modal-movie-title {
+        font-size: 1.8em;
+    }
+
+    #modal-movie-plot {
+        font-size: 0.9em;
+    }
+
+    .close-button {
+        font-size: 2em;
+        top: 0px;
+        right: 10px;
     }
 }
